@@ -1,7 +1,7 @@
 #include "EncoderStructure.hpp"
 
 Encode::Encode() {
-    codeIndex = 0, currentIndex = 0;
+    codeIndex = 256, currentIndex = 0;
     currentBitLength = 0;
 }
 
@@ -24,3 +24,21 @@ void Encode::addEntry() {
 bool Encode::doesExist(string entry) {
     return this->dictionary[entry] != (int) NULL;
 }
+
+void Encode::Compress(string in) {
+    int n = in.length();
+    while (this->currentIndex <= n) {
+        this->currentString += in[this->currentIndex];
+        // cout << this->currentString << endl;
+
+        if (!doesExist(this->currentString)) {
+            addEntry();
+            if (this->outFile.is_open())
+                this->outFile << this->dictionary[this->currentString];
+            this->currentString = this->currentString[this->currentString.length() - 1];
+        }
+        
+        ++this->currentIndex;
+    }
+}
+ 

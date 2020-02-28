@@ -6,6 +6,7 @@ class Encode {
         string currentString;
         unordered_map<string, int> dictionary;
         int currentBitLength;
+        char currentBit;
         ifstream inFile;
         ofstream outFile;
 
@@ -19,6 +20,6 @@ class Encode {
         void addEntry();
         bool doesExist(string entry);
 
-        void Compress();
+        void Compress(string in);
 };
 
