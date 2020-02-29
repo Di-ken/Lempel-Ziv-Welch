@@ -7,14 +7,16 @@ Encode::Encode() {
 
 Encode::~Encode() {}
 
-void Encode::initializeDictionary() {
-    for (int itr=0;itr < 256;++itr)
-        this->dictionary[std::to_string((char) itr)] = itr;
+void Encode::initializeDictionary(string all) {
+    for (int t=0;t<256;++t) {
+        if (!this->dictionary[string(1, char(t))])
+            this->dictionary[string(1, char(t))] = t;
+    }
 }
 
 void Encode::printDictionary() {
-    for (int itr=0;itr<dictionary.size();++itr)
-        cout << this->dictionary[std::to_string((char) itr)] << " ";
+    for (auto itr=this->dictionary.begin();itr!=this->dictionary.end();++itr)
+        cout << itr->first << " " << itr->second << endl;
 }
 
 void Encode::addEntry() {
@@ -27,17 +29,17 @@ bool Encode::doesExist(string entry) {
 
 void Encode::Compress(string in) {
     int n = in.length();
+
     while (this->currentIndex <= n) {
         this->currentString += in[this->currentIndex];
-        // cout << this->currentString << endl;
+        cout << this->currentString << endl;
 
-        if (!doesExist(this->currentString)) {
-            addEntry();
-            if (this->outFile.is_open())
-                this->outFile << this->dictionary[this->currentString];
+        if (!this->dictionary[this->currentString]) {
+            this->dictionary[this->currentString] = ++this->codeIndex;
+            this->outFile << this->dictionary[this->currentString.substr(0, this->currentString.length() - 1)] << " ";
+
             this->currentString = this->currentString[this->currentString.length() - 1];
         }
-        
         ++this->currentIndex;
     }
 }

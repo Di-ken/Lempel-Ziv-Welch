@@ -16,7 +16,7 @@ class Encode {
         void writeBit(int bit);
         void printDictionary();
 
-        void initializeDictionary();
+        void initializeDictionary(string all);
         void addEntry();
         bool doesExist(string entry);
 
