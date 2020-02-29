@@ -5,8 +5,6 @@
 #include <string>
 #include "unordered_map"
 
-#define CHAR_LIMIT 256
-
 using std::cout;
 using std::cin;
 using std::unordered_map;

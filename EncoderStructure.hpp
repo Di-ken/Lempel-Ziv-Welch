@@ -1,10 +1,13 @@
+#pragma once
+
 #include "Incs.hpp"
 
 class Encode {
     public:
         int codeIndex, currentIndex;
+        int bitSize;
         string currentString;
-        unordered_map<string, int> dictionary;
+        unordered_map<string, unsigned int> dictionary;
         int currentBitLength;
         char currentBit;
         ifstream inFile;
@@ -13,13 +16,14 @@ class Encode {
         Encode();
         ~Encode();
 
-        void writeBit(int bit);
         void printDictionary();
 
         void initializeDictionary(string all);
-        void addEntry();
         bool doesExist(string entry);
 
         void Compress(string in);
+        
+        void writeBit(int bit);
+        void writeBuffer(int n);
 };
 
