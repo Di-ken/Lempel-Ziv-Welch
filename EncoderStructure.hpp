@@ -25,5 +25,6 @@ class Encode {
         
         void writeBit(int bit);
         void writeBuffer(unsigned n);
+        void padRemainingBits();
 };
 

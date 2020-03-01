@@ -4,7 +4,7 @@
 
 Encode::Encode() {
     codeIndex = 256, currentIndex = 0;
-    bitSize = 9;
+    bitSize = 9; // Since we start with 256 Symbols already.
     buffer = 0, bufferSize = 0;
 }
 

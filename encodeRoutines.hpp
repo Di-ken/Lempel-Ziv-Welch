@@ -7,6 +7,8 @@ void Encode::writeBit(int bit) {
         ++bitSize;
 
     if (bufferSize == 8) {
+        if (bitSize == 9)
+            cout << buffer << endl;
         outFile << buffer;
         buffer = 0;
         bufferSize = 0;
@@ -20,11 +22,14 @@ void Encode::writeBit(int bit) {
 void Encode::writeBuffer(unsigned n) {
     for (int t=bitSize-1;t>=0;--t) {
         int bit = (n >> t);
-        cout << (bit&1);
         writeBit(bit & 1);
     }
-    cout << endl;
     return;
+}
+
+void Encode::padRemainingBits() {
+   int needed = 8 - bufferSize;
+   buffer <<= needed; 
 }
 
 void Encode::Compress(string in) {
@@ -44,6 +49,7 @@ void Encode::Compress(string in) {
         ++currentIndex;
     }
     // cout << "Code Index: " << codeIndex << endl;
-    writeBuffer(buffer);
+    padRemainingBits();
+    outFile << buffer;
     return;
 }
