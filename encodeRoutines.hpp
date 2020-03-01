@@ -7,8 +7,6 @@ void Encode::writeBit(int bit) {
         ++bitSize;
 
     if (bufferSize == 8) {
-        if (bitSize == 9)
-            cout << buffer << endl;
         outFile << buffer;
         buffer = 0;
         bufferSize = 0;
