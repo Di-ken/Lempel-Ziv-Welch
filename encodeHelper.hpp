@@ -4,8 +4,8 @@
 
 Encode::Encode() {
     codeIndex = 256, currentIndex = 0;
-    currentBitLength = 0;
     bitSize = 9;
+    buffer = 0, bufferSize = 0;
 }
 
 Encode::~Encode() {}

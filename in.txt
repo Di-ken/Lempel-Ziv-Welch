@@ -1,1 +1,1 @@
-ABBABBBABBA
+Dynamic LZW (which is used eg. in the GIF format) only writes as many bits as the current dictionary size requires. In other words, if the current dictionary size is 350 elements, then the index value will be written as a 9-bit integer (instead of eg. a 16-bit one). When the element with index 511 is added to the dictionary then the output bitsize is incremented by one, ie. all indices will now by written as 10-bit integers.

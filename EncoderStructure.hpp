@@ -8,8 +8,8 @@ class Encode {
         int bitSize;
         string currentString;
         unordered_map<string, unsigned int> dictionary;
-        int currentBitLength;
-        char currentBit;
+        char buffer;
+        int bufferSize;
         ifstream inFile;
         ofstream outFile;
 
@@ -24,6 +24,6 @@ class Encode {
         void Compress(string in);
         
         void writeBit(int bit);
-        void writeBuffer(int n);
+        void writeBuffer(unsigned n);
 };
 
