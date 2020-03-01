@@ -3,27 +3,33 @@
 #include "EncoderStructure.hpp"
 
 void Encode::writeBit(int bit) {
+    if (codeIndex % (int)pow(2, bitSize) == 0)
+        ++bitSize;
+
     if (bufferSize == 8) {
         outFile << buffer;
         buffer = 0;
         bufferSize = 0;
-        cout << endl;
     }
     buffer = (buffer << 1) | bit;
     ++bufferSize;
+
+    return;
 }
 
 void Encode::writeBuffer(unsigned n) {
-    if (n > 1) writeBuffer(n >> 1);
-
-    writeBit(n & 1);
-    cout << (n & 1);
+    for (int t=bitSize;t>=0;--t) {
+        int bit = (n >> t);
+        writeBit(bit & 1);
+    }
+    return;
 }
 
 void Encode::Compress(string in) {
     int n = in.length();
 
     while (currentIndex <= n) {
+        cout << "Current Bit Size: " << bitSize << " " << codeIndex << endl;
         currentString += in[currentIndex];
 
         if (!dictionary[currentString]) {
@@ -35,6 +41,7 @@ void Encode::Compress(string in) {
         }
         ++currentIndex;
     }
-
+    // cout << "Code Index: " << codeIndex << endl;
     writeBuffer(buffer);
+    return;
 }

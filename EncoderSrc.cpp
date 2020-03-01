@@ -9,13 +9,10 @@ int main() {
 
     while (getline(enc.inFile, tp)) all += tp;
 
-    /*
     enc.initializeDictionary(all);
     enc.Compress(all);
 
     enc.outFile.close();
     enc.inFile.close();
-    */
-    enc.writeBuffer(66);
 }
 
