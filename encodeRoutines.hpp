@@ -18,10 +18,12 @@ void Encode::writeBit(int bit) {
 }
 
 void Encode::writeBuffer(unsigned n) {
-    for (int t=bitSize;t>=0;--t) {
+    for (int t=bitSize-1;t>=0;--t) {
         int bit = (n >> t);
+        cout << (bit&1);
         writeBit(bit & 1);
     }
+    cout << endl;
     return;
 }
 
@@ -29,7 +31,7 @@ void Encode::Compress(string in) {
     int n = in.length();
 
     while (currentIndex <= n) {
-        cout << "Current Bit Size: " << bitSize << " " << codeIndex << endl;
+        // cout << "Current Bit Size: " << bitSize << " " << codeIndex << endl;
         currentString += in[currentIndex];
 
         if (!dictionary[currentString]) {
