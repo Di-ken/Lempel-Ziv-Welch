@@ -9,8 +9,9 @@ class Decode {
         string symbols;
         int symbolIndex;
         unsigned char ch;
-        unsigned char buffer;
+        unsigned buffer;
         int bufferSize;
+        string all;
         unordered_map<unsigned int, string> dictionary;
         int bitSize;
 
@@ -25,5 +26,6 @@ class Decode {
         void Decompress();
         char getNextSymbol();
         void pullBits();
+        void Bwithpad(unsigned n);
 };
 
