@@ -8,7 +8,7 @@ class Encode {
         int bitSize;
         string currentString;
         unordered_map<string, unsigned int> dictionary;
-        char buffer;
+        unsigned char buffer;
         int bufferSize;
         ifstream inFile;
         ofstream outFile;

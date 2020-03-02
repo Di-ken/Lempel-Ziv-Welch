@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-int bits = 10;
+int bits = 9;
 
 void showB(unsigned n) {
     if (n > 1) showB(n >> 1);
@@ -20,8 +20,7 @@ void Bwithpad(unsigned n) {
 }
 
 int main() {
-    unsigned n;
-    
-    Bwithpad(512);
+    char a = ' ';
+    Bwithpad(a);
 }
 

@@ -4,19 +4,26 @@
 
 class Decode {
     public:
-        fstream inFile, outFile;
-        char buffer;
+        ifstream inFile;
+        ofstream outFile;
+        string symbols;
+        int symbolIndex;
+        unsigned char ch;
+        unsigned char buffer;
         int bufferSize;
         unordered_map<unsigned int, string> dictionary;
         int bitSize;
 
-        Deocde();
+        Decode();
         ~Decode();
 
         void printDictionary();
 
         void initializeDictionary(string all);
 
-        void Decompress(string in);
+        void getFileData();
+        void Decompress();
+        char getNextSymbol();
+        void pullBits();
 };
 

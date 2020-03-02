@@ -1,5 +1,6 @@
 #include "encodeHelper.hpp"
 #include "encodeRoutines.hpp"
+#include "decodeRoutines.hpp"
 
 #include <sstream>
 
@@ -33,6 +34,9 @@ int main() {
         }
     }
 */
+
+    Decode dec;
+    dec.Decompress();
     
 
 }
